@@ -50,7 +50,7 @@ def handle_invalid_usage(error):
 # generate sitemap with all your endpoints
 
 
-@app.route('/')
+#@app.route('/')
 def sitemap():
     if ENV == "development":
         return generate_sitemap(app)
@@ -64,6 +64,11 @@ def serve_any_other_file(path):
     response = send_from_directory(static_file_dir, path)
     response.cache_control.max_age = 0  # avoid cache memory
     return response
+
+
+@app.route('/api/hello', methods=['GET'])
+def hello():
+    return jsonify({"message": "Hola desde Flask, backend encendido 🔥"}), 200
 
 
 # this only runs if `$ python src/main.py` is executed
